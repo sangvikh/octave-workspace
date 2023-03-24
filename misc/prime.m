@@ -1,6 +1,6 @@
 clc; clear all; close all;
 
-len = 100;
+len = 10000;
 count = 0;
 startTime = time();
 
