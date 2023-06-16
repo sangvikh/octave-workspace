@@ -17,7 +17,7 @@ T = 40;         %Parachute opening time
 %Adaptive dt settings
 dt = 1;         %First time step, will converge on a good timestep if too high
 correctionCount = 0;
-maxStep = 0.01;
+maxStep = 0.001;
 %Initialize last known good values
 hPrev = h0;
 hDotPrev = hDot0;
@@ -43,25 +43,25 @@ while h > 0
     b = b2;
     ha(idx) = H_T + m^2*g/b2^2 + m/b2*V_T - (m^2*g/b2^2 + m/b2*V_T)*exp(-b2/m*(t-T)) - m*g/b2*(t-T);
   end
-  
+
   %Acceleration of man
   hDotDot = (-m*g - b*hDot)/m;
-   
+
   %Save plot data
   tPlot(idx) = t;
   hPlot(idx) = h;
   hDotPlot(idx) = hDot;
   hDotDotPlot(idx) = hDotDot;
   dtPlot(idx) = dt;
-  
+
   %If step is too large, go back 1 timestep, reduce dt.
-  if abs(hDotDot)*dt > 1.1*maxStep    
+  if abs(hDotDot)*dt > 1.1*maxStep
     %Set to last good values
     h = hPrev;
     hDot = hDotPrev;
     idx = idxPrev;
     t = tPrev;
-    
+
     %Reduce dt
     dt = dt*0.5;
     correctionCount = correctionCount + 1;
@@ -72,17 +72,17 @@ while h > 0
     hDotDotPrev = hDotDot;
     idxPrev = idx;
     tPrev = t;
-    
+
     %%THIS STEP MIGHT NOT BE ACCURATE, THERFORE GOOD VALUES ARE BEFORE THIS%%
-    
+
     %Update state variables
     h = h + hDot*dt;
     hDot = hDot + hDotDot*dt;
-    
+
     %Update time data
     t = t + dt;
     idx = idx + 1;
-    
+
     %Adjust dt to keep stepsize the same
     if abs(hDotDot)*dt > maxStep
       dt = dt*0.95;
