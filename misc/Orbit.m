@@ -31,8 +31,8 @@ r_sat_earth = rSat*[cos(theta), sin(theta)];       %m
 satV = satV*[cos(theta+pi()/2), sin(theta+pi()/2)];     %m/s
 
 %Draw initial positions
-drawCircle(planetScale*earthRadius, 0, 0, scale);
-drawCircle(planetScale*moonRadius, moonPos(1), moonPos(2), scale);
+%drawCircle(planetScale*earthRadius, 0, 0, scale);
+%drawCircle(planetScale*moonRadius, moonPos(1), moonPos(2), scale);
 
 %Calculate new angle and integrate
 t = 0;

@@ -41,9 +41,9 @@ end
 %figure;
 grid on;
 hold on;
-%plot(t,x(:,3));
+plot(t,x(:,3));
 %plot(t,xDot(:,3));
 %plot(t,xDotDot(:,3));
-plot3(x(:,1),x(:,2),x(:,3));
-plot3(y(:,1),y(:,2),y(:,3));
-x(end,3)
+%plot3(x(:,1),x(:,2),x(:,3));
+%plot3(y(:,1),y(:,2),y(:,3));
+%x(end,3)
